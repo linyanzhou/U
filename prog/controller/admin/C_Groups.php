@@ -115,11 +115,9 @@
             $db_action_to_group = $this->setup->get_model_handler('auth/action_to_group');
 
             $inputs['poster_id'] = $user_id;
-            $inputs['post_ip']   = $post_ip;
-
             $id   = isset($inputs['id']) ? $inputs['id'] : null;
             $name = isset($inputs['name']) ? $inputs['name'] : null;
-
+ 
             if ( trim($name) == '' ) {
                 $exp = 'name_is_null';
             }
@@ -128,10 +126,12 @@
                     'id'     => $id,
                     'inputs' => $inputs
                 );
-
+ 
                 if ($id > 0) {
                     $exp = 'change_successful';
+                     
                     $rv  = $db_group->change($opts);
+                   
                     if (! $rv)
                         $exp = 'change_failed';
                 }
@@ -154,6 +154,7 @@
                 if ($rv) {
                     $inputs['group_id'] = $id;
                     $action_ids = isset($inputs['action_id']) ? $inputs['action_id'] : null;
+                    
                     if (is_array($action_ids)) {
                         foreach ($action_ids as $action_id) {
                             if ($action_id > 0) {
@@ -162,6 +163,7 @@
                                     'inputs' => $inputs
                                 );
                                 $db_action_to_group->create($opts);
+                                
                             }
                         }
                     }

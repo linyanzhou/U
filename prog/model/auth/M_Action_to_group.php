@@ -26,9 +26,8 @@
 
             if ( count($inputs) > 0 && count($fields) > 0 ) {
                 $p_fields = self::$DBM->get_execute_fields($inputs, $fields);
-                $sql = " INSERT INTO $table SET " . join(',', $p_fields) . ", ctime = now() ";
-                //echo $sql;
-                //exit;
+                $sql = " INSERT INTO $table SET " . join(',', $p_fields) . ", create_time = now() ";
+                
 
                 $conn = self::$DBM->get_connect();
                 return self::$DBM->execute($conn, $sql);

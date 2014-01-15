@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-15 07:26:32
+<?php /* Smarty version 2.6.26, created on 2014-01-15 08:28:02
          compiled from ./Share/main-menu-text.html */ ?>
 <div style="float:left;width:10%;border-right:1px solid #EEEEEE">
 <dl>
@@ -29,4 +29,15 @@
 &_a=actions">功能列表</a>
   </dd>
 </dl>
-</div>
+</div>
+
+<script>
+
+  $(function() {
+    var action = '<?php echo $this->_tpl_vars['_a']; ?>
+';
+    if (action != '')
+      $('#menu_' + action).addClass('active');
+  });
+
+</script>

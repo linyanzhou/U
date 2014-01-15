@@ -88,7 +88,7 @@
 
             if ( count($inputs) > 0 && count($fields) > 0 ) {
                 $p_fields = self::$DBM->get_execute_fields($inputs, $fields);
-                $sql = " INSERT INTO $table SET " . join(',', $p_fields) . ", ctime = now(), post_time = now() ";
+                $sql = " INSERT INTO $table SET " . join(',', $p_fields) . ", create_time = now() ";
                 //echo $sql;
                 //exit;
 
@@ -115,14 +115,13 @@
                 $sql = " UPDATE $table SET " . join(',', $p_fields);
 
                 if (! $unpost)
-                    $sql .= ", post_time = now() ";
+                    $sql .= ", create_time = now() ";
                 $sql .= " WHERE 1 ";
 
                 if ( is_numeric($id) && ($id) > 0 ) {
                     if (is_numeric($id) && ($id) > 0)
                         $sql.= " and id = $id ";
-                    //echo $sql;
-                    //exit;
+                     
 
                     $conn = self::$DBM->get_connect();
                     return self::$DBM->execute($conn, $sql);
