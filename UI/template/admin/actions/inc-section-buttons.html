@@ -1,0 +1,5 @@
+<a href="?_d=<{$_d}>&_a=<{$_a}>&f=list">所有功能</a> - 
+<{section name=sec loop=$list_types}>
+<a href="?_d=<{$_d}>&_a=<{$_a}>&f=list&type_id=<{$list_types[sec].id}>"><{$list_types[sec].name}>列表</a> - 
+<{/section}>
+<a href="?_d=<{$_d}>&_a=<{$_a}>&f=detail">添加功能</a>

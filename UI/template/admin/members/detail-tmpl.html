@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>members</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="<{$_url_ui}>/css/admin/default.css" />
+  <script language="javascript" src='<{$_url_ui}>/js/admin/default.js'></script>
+</head>
+
+<body>
+  <div class="header">
+    <{$Header}>
+  </div>
+
+  <div class="wrapper">
+    
+    <div class="content">
+      <div class="block">
+        <h4>个人信息</h4>
+        <div class="inc-section">
+          <{include file=members/inc-section-buttons.html}>
+        </div>
+
+        <div class="data-detail">
+          <form id="frm_detail" name="frm_detail" method="post" action="">
+            <input type="hidden" name="f" value="change">
+            <input type="hidden" name="_d" value="<{$_d}>">
+            <input type="hidden" name="_a" value="<{$_a}>">
+            <input type="hidden" name="id" value="<{$id}>">
+            <table>
+              <tr>
+                <th>帐号：</th>
+                <td><span class="tip"><{$login}></span></td>
+              </tr>
+              <tr>
+                <th>邮箱：</th>
+                <td><span class="tip"><{$email}></span></td>
+              </tr>
+              <tr>
+                <th>密码：</th>
+                <td><span class="tip"><{$passwd}></span></td>
+              </tr>
+              <tr>
+                <th>备注：</th>
+                <td><span class="tip"><{$intro}></span></td>
+              </tr>
+              <{if $list_groups}>
+                <tr>
+                  <th>会员组列表：</th>
+                  <td>
+                    <{section name=sec loop=$list_groups}>
+                      <input type="checkbox" id="group_id_<{$list_groups[sec].id}>" name="group_id[]"
+                      value="<{$list_groups[sec].id}>" <{if $list_groups[sec].m2g_id}>checked<{/if}>><{$list_groups[sec].name}>
+                    <{/section}>
+                  </td>
+                </tr>
+              <{/if}>
+              <tr>
+                <th></th>
+                <td>
+                  <{if $E_change_successful}>
+                    <span class="tip">分组成功！</span>
+                  <{/if}>
+                  <{if $E_change_failed}>
+                    <span class="error">分组失败！</span>
+                  <{/if}>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="input" type="submit" name="btn_submit" value="提 交">
+                  <input class="input" type="reset" name="btn_reset" value="重 置">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div><!--block-->
+    </div><!--content-->
+  </div><!--wrapper-->
+
+  <div class="footer">
+    <{$Footer}>
+  </div>
+</body>
+
+<script>
+//  $(function() {
+//  });
+</script>
+
+</html>

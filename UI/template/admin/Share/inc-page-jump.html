@@ -1,0 +1,16 @@
+总数: <{$pw_rec_total}>&nbsp;&nbsp;
+页次: <span><{$pw_curr_page}></span>/<{$pw_page_total}>&nbsp;&nbsp;
+
+<{if $pw_rec_first}><a href='<{$pw_url_prefix}><{$pw_rec_first}><{$pw_url_suffix}>'>|&lsaquo;</a><{/if}>
+<{if $pw_prev_win}><a href='<{$pw_url_prefix}><{$pw_prev_win}><{$pw_url_suffix}>'>&lsaquo;&lsaquo;</a><{/if}>
+
+<{section name=sec loop=$pw_page_loop}>
+  <{if $pw_page_loop[sec].is_curr}>
+    <span title="<{$pw_url_prefix}><{$pw_page_loop[sec].page_idx}><{$pw_url_suffix}>"><{$pw_page_loop[sec].page_idx}></span>
+  <{else}>
+    <a href='<{$pw_url_prefix}><{$pw_page_loop[sec].page_idx}><{$pw_url_suffix}>'><{$pw_page_loop[sec].page_idx}></a>
+  <{/if}>
+<{/section}>
+
+<{if $pw_next_win}><a href='<{$pw_url_prefix}><{$pw_next_win}><{$pw_url_suffix}>'>&rsaquo;&rsaquo;</a><{/if}>
+<{if $pw_rec_last}><a href='<{$pw_url_prefix}><{$pw_rec_last}><{$pw_url_suffix}>'>&rsaquo;|</a><{/if}>

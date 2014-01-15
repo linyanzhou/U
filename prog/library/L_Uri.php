@@ -30,6 +30,7 @@
                         $params[$k] = $v;
                 }
             }
+             
             $querys = array();
             foreach ($params as $k=>$v) {
                 if ($k != '' && $v != '')
@@ -39,7 +40,7 @@
 
             if ( count($querys) > 0 )
                 $action .= '?' . join('&', $querys);
-
+    
             Header("Location:$action");
             exit;
         }
@@ -49,6 +50,7 @@
             $query = $this->_http_build_query($inputs, $fields);
 
             $relative = $_SERVER['PHP_SELF'];
+            
 
             return join( '?', array($relative, $query) );
         }

@@ -23,7 +23,7 @@
             parent::__construct($setup);
 
             if ( isset($this->main_config['controller']) )
-                $this->_config = $this->main_config['controller'];
+                $this->_config = $this->main_config['controller'];  //在下面的set_welcome_info用到
                
             if ( is_array($this->_config) ) {
                 foreach ($this->_config as $k => $v) {
@@ -42,7 +42,8 @@
             isset(self::$l_uri) or self::$l_uri = $this->setup->get_library_handler('uri');
                 
             isset(self::$l_string)or self::$l_string = $this->setup->get_library_handler('string');
-        
+           
+            isset(self::$l_upload)or self::$l_upload = $this->setup->get_library_handler('upload');
 
 //            isset(self::$l_encrypt)
 //                or self::$l_encrypt  = $this->setup->get_library_handler('encrypt');
@@ -56,13 +57,26 @@
 //            isset(self::$l_pscws)
 //                or self::$l_pscws = $this->setup->get_library_handler('pscws');
 //
-//            isset(self::$l_upload)
-//                or self::$l_upload = $this->setup->get_library_handler('upload');
+//            
       
         }
         
 
-       
+        public function set_welcome_info($wel)
+        {
+            $wel['f']  = $this->function;
+            $wel['_a'] = $this->action;
+            $wel['_d'] = $this->domain;
+
+            if ( is_array($this->_config) ) {
+                foreach ($this->_config as $k => $v) {
+                    $wel['_' . $k] = $v;
+                }
+            }    //这里把config里的配置文件加上  
+            
+           // return $wel;  ?
+             self::$l_output->set_welcome_info( $wel );
+        }
 
         public function callback()
         {

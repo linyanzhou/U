@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>groups</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="<{$_url_ui}>/css/admin/default.css" />
+  <script language="javascript" src='<{$_url_ui}>/js/admin/default.js'></script>
+</head>
+
+<body>
+  <div class="header">
+    <{$Header}>
+  </div>
+
+  <div class="wrapper">
+    
+    <div class="content">
+      <div class="block">
+        <h4>会员组信息</h4>
+        <div class="inc-section">
+          <span><{include file=groups/inc-section-buttons.html}></span>
+        </div>
+
+        <div class="data-detail">
+          <form id="frm_detail"  name="frm_detail" method="post" action="">
+            <input type="hidden" name="f" value="change">
+            <input type="hidden" name="_d" value="<{$_d}>">
+            <input type="hidden" name="_a" value="<{$_a}>">
+            <input type="hidden" name="id" value="<{$id}>">
+            <table>
+              <tr>
+                <th>名称：</th>
+                <td><input type="text" name="name" value="<{$name}>" class="required"></td>
+              </tr>
+              <tr>
+                <th>备注：</th>
+                <td><textarea id="intro" name="intro"><{$intro}></textarea></td>
+              </tr>
+              <{if $list_types}>
+                <tr>
+                  <th>功能列表：</th>
+                  <td>
+                    <{section name=sec loop=$list_types}>
+                      <{if $list_types[sec].list_actions}>
+                        <table>
+                          <tr>
+                            <th><{$list_types[sec].name}>：</th>
+                            <td>
+                              <{section name=sec1 loop=$list_types[sec].list_actions}>
+                                <input type="checkbox" name="action_id[]" value="<{$list_types[sec].list_actions[sec1].id}>" ><{$list_types[sec].list_actions[sec1].name}>
+                              <{/section}>
+                            </td>
+                          </tr>
+                        </table>
+                      <{/if}>
+                    <{/section}>
+                  </td>
+                </tr>
+              <{/if}>
+              <tr>
+                <th></th>
+                <td>
+                  <{if $E_name_is_null}>
+                    <span class="error">名称不能为空！</span>
+                  <{/if}>
+                  <{if $E_create_successful}>
+                    <span class="tip">添加成功！</span>
+                  <{/if}>
+                  <{if $E_create_failed}>
+                    <span class="error">添加失败！</span>
+                  <{/if}>
+                  <{if $E_change_successful}>
+                    <span class="tip">修改成功！</span>
+                  <{/if}>
+                  <{if $E_change_failed}>
+                    <span class="error">修改失败！</span>
+                  <{/if}>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="input" type="submit" name="btn_submit" value="提 交">
+                  <input class="input" type="reset" name="btn_reset" value="重 置">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div><!--block-->
+    </div><!--content-->
+  </div><!--wrapper-->
+
+  <div class="footer">
+    <{$Footer}>
+  </div>
+</body>
+
+<script>
+  $(function() {
+
+    validate('frm_detail');
+
+    //checked
+    var action_ids = [];
+    <{section name=sec loop=$list_actions}>
+      action_ids.push('<{$list_actions[sec].action_id}>');
+    <{/section}>
+    setCheckbox('action_id', action_ids);
+
+  });
+</script>
+
+</html>

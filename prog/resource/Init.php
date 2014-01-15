@@ -13,8 +13,11 @@
         }
 
         $setup =  get_local_setup($opts);
+        
 
         $authorize = $setup->get_authorize();
+        
+        $welcome   = $setup->get_welcome();
         
         $control   = $setup->get_controller_handler();
 
@@ -24,6 +27,14 @@
             $authorize = $setup->get_controller_handler('authorize');
             $authorize->authorize();
         }
+        $wel = null;
+        if ( $welcome == TRUE ) {
+            $welcome = $setup->get_controller_handler('welcomeinfo');
+            $wel     = $welcome->get_welcome_info();
+        }
+
+        $control->set_welcome_info($wel);
+        
         
 
         $control->callback();

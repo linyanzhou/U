@@ -114,7 +114,6 @@
 
                 //$this->_log4php->debug($sql);
             }
-
             return true;
         }
 
@@ -151,8 +150,7 @@
             $url_suffix = isset($res['url_suffix']) ? $res['url_suffix'] : null;
             $prefix     = isset($res['prefix']) ? $res['prefix'] : null;
 
-            //if ($rec_total <= 0)
-            //    return;
+         
 
             $curr_page > 0
                 or $curr_page = 1;
@@ -208,9 +206,11 @@
             $res[$prefix.'rec_last']   = $last;
             $res[$prefix.'url_prefix'] = $url_prefix;
             $res[$prefix.'url_suffix'] = $url_suffix;
-            //$res[$prefix.'page_loop']  = $this->_make_page_loop2($page_start, $page_end, $curr_page);
+           //$res[$prefix.'page_loop']  = $this->_make_page_loop2($page_start, $page_end, $curr_page);
             $res[$prefix.'page_loop']  = $this->_make_page_loop($page_width,$curr_page, $page_cnt);
             $res[$prefix.'escape_url_prefix'] = rawurlencode($url_prefix);
+        
+        
         }
 
         private function _make_page_loop($page_width, $curr, $lastpage) 

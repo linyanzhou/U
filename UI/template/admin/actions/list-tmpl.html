@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>功能列表</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap.min.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap-responsive.css"/>
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/style.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/validate.css" />
+ <script type="text/javascript" src="/U/UI/js/jquery.js"></script>  
+ <script type="text/javascript" src="/U/UI/js/bootstrap.js"></script> 
+ <script type="text/javascript" src="/U/UI/js/jquery.validate.js"></script>
+ <script type="text/javascript" src="/U/UI/js/default.js"></script> 
+</head>
+
+<body>
+ <{include file =./Share/header.html}>
+
+  <div style="margin-top:10px;border-top:1px solid #EEEEEE">
+     <{include file =./Share/main-menu-text.html}>
+
+
+    <div style="float:right;width:88%;text-align:left;">
+      <div class="block">    
+       <span><{include file=actions/inc-section-buttons.html}></span>
+       
+       
+
+        <form id="frm_list" name="frm_list" action="" method="POST" ENCTYPE="multipart/form-data">
+          <input type="hidden" name="f" value="delete">
+          <input type="hidden" name="url_prefix" value="<{$pw_url_prefix}><{$pw_curr_page}>">
+          <div class="data-list">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1">
+              <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>查看</th>
+                <th>复制</th>
+                <th>状态 <input type="checkbox" id="chk_all_able_status" name="chk_all_able_status" value=""></th>
+              </tr>
+              <{section name=sec loop=$list_actions}>
+                <tr>
+                  <td>
+                    <{$list_actions[sec].action_code}>
+                    <{if $list_actions[sec].action_func}>:<{$list_actions[sec].action_func}><{/if}>
+                    (<{$list_actions[sec].namespace}><{$list_actions[sec].rank}>)
+                  </td>
+                  <td title="<{$list_actions[sec].name}>"><{$list_actions[sec].name1}></td>
+                  <td class="center">
+                    <a href="?_d=<{$_d}>&_a=<{$_a}>&f=detail&id=<{$list_actions[sec].id}>">
+                     <img src="/U/UI/img/btn_edit.gif" alt="edit">
+                    </a>
+                  </td>
+                  <td class="center">
+                    <a href="?_d=<{$_d}>&_a=<{$_a}>&f=copy&id=<{$list_actions[sec].id}>">
+                     <img src="/U/UI/img/btn_copy.png" alt="copy">
+                    </a>
+                  </td>
+                  <td class="center">
+                    <span id="wrap_able_status<{$list_actions[sec].id}>"><{$list_actions[sec].status}></span>
+                    <a href="javascript:void(<{$list_actions[sec].id}>)" rel="<{$list_actions[sec].id}>" id="btn_able_status">改变</a>
+                    <input type="checkbox" id="able_status_ids" name="able_status_ids" value="<{$list_actions[sec].id}>">
+                  </td>
+                </tr>
+              <{/section}>
+            </table>
+          </div>
+
+          <div class="center">
+            <input class="input" type="button" id="btn_all_able_status" name="btn_all_able_status" value="改 变">
+          </div>
+        </form>
+
+        <div class="inc-page-jump">
+          <{include file=Share/inc-page-jump.html}>
+        </div>
+      </div><!--block-->
+    </div><!--content-->
+  </div><!--wrapper-->
+
+      <{include file =./Share/footer.html}>
+</body>
+
+<script>
+  $(function() {
+    //status
+    var url = "?_a=<{$_a}>&_w=false&f=able";
+    var ableStatus = new Able();
+    ableStatus.able('btn_able_status', 'wrap_able_status', url);
+    ableStatus.ables('btn_all_able_status', 'wrap_able_status', 'able_status_ids', url);
+    checkAll('chk_all_able_status', 'able_status_ids');
+  });
+</script>
+
+</html>

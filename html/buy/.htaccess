@@ -1,0 +1,5 @@
+Rewriteengine on
+RewriteRule   ^([^.]*)/[Dd]irectory-([\d]*)\.html$ index.php?f=list&c=$1&p=$2
+RewriteRule   ^[Dd]irectory-([\d]*)\.html$ index.php?f=list&p=$1
+RewriteRule   ^[Dd]etail--([\d]*)\.html$ index.php?f=detail&id=$1
+RewriteRule   ^inquiry--([\d]*)\.html$ index.php?f=inquiry&id=$1

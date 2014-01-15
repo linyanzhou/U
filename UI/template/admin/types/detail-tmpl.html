@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>types</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="<{$_url_ui}>/css/admin/default.css" />
+  <script language="javascript" src='<{$_url_ui}>/js/admin/default.js'></script>
+</head>
+
+<body>
+  <div class="header">
+    <{$Header}>
+  </div>
+
+  <div class="wrapper">
+    
+   
+    <div class="content">
+      <div class="block">
+        <h4>功能组信息</h4>
+        <div class="inc-section">
+          <{include file=types/inc-section-buttons.html}>
+        </div>
+
+        <div class="data-detail">
+          <form id="frm_detail" name="frm_detail" method="post" action="">
+            <input type="hidden" name="f" value="change">
+            <input type="hidden" name="_d" value="<{$_d}>">
+            <input type="hidden" name="_a" value="<{$_a}>">
+            <input type="hidden" name="id" value="<{$id}>">
+            <table>
+              <tr>
+                <th>名称：</th>
+                <td><input type="text" name="name" value="<{$name}>" class="required"></td>
+              </tr>
+              <tr>
+                <th>排序：</th>
+                <td><input type="text" name="rank" value="<{if $rank}><{$rank}><{else}>0<{/if}>" class="required digits"></td>
+              </tr>
+              <tr>
+                <th>展开显示：</th>
+                <td>
+                  <input type="radio" name="open" value="1">是
+                  <input type="radio" name="open" value="0">否
+                </td>
+              </tr>
+              <tr>
+                <th>备注：</th>
+                <td><textarea id="intro" name="intro"><{$intro}></textarea></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <{if $E_name_is_null}>
+                    <span class="error">名称不能为空！</span>
+                  <{/if}>
+                  <{if $E_create_successful}>
+                    <span class="tip">添加成功！</span>
+                  <{/if}>
+                  <{if $E_create_failed}>
+                    <span class="error">添加失败！</span>
+                  <{/if}>
+                  <{if $E_change_successful}>
+                    <span class="tip">修改成功！</span>
+                  <{/if}>
+                  <{if $E_change_failed}>
+                    <span class="error">修改失败！</span>
+                  <{/if}>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input class="input" type="submit" name="btn_submit" value="提 交">
+                  <input class="input" type="reset" name="btn_reset" value="重 置">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div><!--block-->
+    </div><!--content-->
+  </div><!--wrapper-->
+
+  <div class="footer">
+    <{$Footer}>
+  </div>
+</body>
+
+<script>
+  $(function() {
+
+    validate('frm_detail');
+    setRadio('open', '<{$open}>', true);
+
+  });
+</script>
+
+</html>

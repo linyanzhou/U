@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>members</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap.min.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap-responsive.css"/>
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/style.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/validate.css" />
+ <script type="text/javascript" src="/U/UI/js/jquery.js"></script>  
+ <script type="text/javascript" src="/U/UI/js/bootstrap.js"></script> 
+ <script type="text/javascript" src="/U/UI/js/jquery.validate.js"></script>
+ <script type="text/javascript" src="/U/UI/js/default.js"></script> 
+</head>
+
+<body>
+ 
+  
+    <{include file =./Share/header.html}>
+ 
+ 
+
+
+ <div style="margin-top:10px;border-top:1px solid #EEEEEE">
+     <{include file =./Share/main-menu-text.html}>
+
+    <div style="float:right;width:88%;text-align:left;">
+    	
+    	
+      <div class="block">
+        
+         
+        <div class="data-list">
+          <table width="100%" border="0" cellspacing="1" cellpadding="1">
+            <tr>
+              <th>序号</th>
+              <th>帐号</th>
+              <th>密码</th>
+              <th>邮箱</th>
+              <th>查看</th>
+            </tr>
+            <{section name=sec loop=$list_members}>
+              <tr>
+                <td><{$list_members[sec].id}></td>
+                <td><{$list_members[sec].login}></td>
+                <td><{$list_members[sec].passwd}></td>
+                <td><{$list_members[sec].email}></td>
+                <td class="center">
+                  <a href="?_d=<{$_d}>&_a=<{$_a}>&f=detail&id=<{$list_members[sec].id}>">
+                    <img src="/U/UI/img/btn_edit.gif" alt="edit">
+                  </a>
+                </td>
+              </tr>
+            <{/section}>
+          </table>
+        </div>
+
+        <div class="inc-page-jump">
+          <{include file=Share/inc-page-jump.html}>
+        </div>
+      </div><!--block-->
+    </div><!--content-->
+  </div><!--wrapper-->
+
+  
+    <{include file =./Share/footer.html}>
+  
+ 
+</body>
+
+ 
+
+</html>

@@ -21,12 +21,13 @@
 
             $smarty = new Smarty(); 
             $smarty->template_dir = "$this->deploy_root/$this->tmpl_folder/$this->domain";
-            $smarty->compile_dir  = "$this->deploy_root/$this->cache_folder/smarty/$this->domain";
+            $smarty->compile_dir  = "$this->deploy_root/$this->cache_folder/smarty/$this->domain";  //templates_c文件夹
            
             
             $lang = isset($_COOKIE['intl_LANG']) ? $_COOKIE['intl_LANG'] : "en" ;   
             $smarty->config_dir   = "$this->deploy_root/UI/conf/$lang";
-            $smarty->cache_dir    = "$this->deploy_root/$this->cache_folder";  //templates_c文件夹
+            $smarty->cache_dir    = "$this->deploy_root/$this->cache_folder"; 
+             
             $smarty->caching      = FALSE;
             $smarty->left_delimiter  = '<{';
             $smarty->right_delimiter = '}>';
@@ -38,7 +39,7 @@
 
         public function set_welcome_info($wel)
         {
-            $this->_welcome_info = $wel;
+            $this->_welcome_info = $wel;   //下面display()用到
         }
 
         public function display( $tmpl, $res, $expires = null, $status = null )

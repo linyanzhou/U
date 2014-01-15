@@ -51,7 +51,9 @@
             return ( $this->_authorize != FALSE );
         }
 
-        
+        public function get_welcome() {
+            return ( strtolower($this->_welcome) == 'false' ? FALSE : TRUE );
+        }
 
         public function get_deploy_root() {
             return $this->_deploy_root;
@@ -130,10 +132,10 @@
                 or $domain = $this->_domain;
  
             $class = 'C_' . ucfirst( strtolower($ctrl) );
-            
+           
 
             $folder = "$this->_ctrl_folder/$domain";
-           
+            
 
             return $this->_get_class_handler($folder, $class, $opts, $reload);
         }

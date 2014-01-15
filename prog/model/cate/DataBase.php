@@ -7,7 +7,12 @@
         )
     );
     
-    
+    $config['category'] = array(
+        'table'  => 'u_cate.category',
+        'fields' => array(
+            'id','cate_id','cate_name','create_time'
+        )
+    );
     
     
     ?>

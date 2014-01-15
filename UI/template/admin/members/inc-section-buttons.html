@@ -1,0 +1,5 @@
+<a href="?_d=<{$_d}>&_a=<{$_a}>&f=list">所有会员</a>
+<{section name=sec loop=$list_groups}>
+  - <a href="?_d=<{$_d}>&_a=<{$_a}>&f=list&group_id=<{$list_groups[sec].id}>"><{$list_groups[sec].name}>列表</a>
+<{/section}>
+<a href="?_d=<{$_d}>&_a=<{$_a}>&f=detail"></a>

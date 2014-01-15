@@ -2,7 +2,7 @@
     function main()
     {
         $debug     = False;
-        $authorize = False;
+        $authorize = False;   //不进行权限判断
         $domain    = '/';
         $function  = isset($_REQUEST['f']) ? strip_tags($_REQUEST['f']) : null;
         $action    = isset($_REQUEST['_a']) ? strip_tags($_REQUEST['_a']) : null;

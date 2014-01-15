@@ -1,0 +1,95 @@
+<?php /* Smarty version 2.6.26, created on 2014-01-14 05:01:11
+         compiled from add_product.html */ ?>
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap.min.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap-responsive.css"/>
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/style.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap-datetimepicker.min.css"/>
+ <script type="text/javascript" src="/U/UI/js/jquery.js"></script>  
+ <script type="text/javascript" src="/U/UI/js/cate_de.js"></script>
+ <script type="text/javascript" src="/U/UI/js/DropDownListBox.js"></script>
+ <script type="text/javascript" src="/U/UI/js/bootstrap.js"></script>
+ <script type="text/javascript" src="/U/UI/js/ajaxfileupload.js"></script>   
+ <script type="text/javascript" src="/U/UI/js/bootstrap-datetimepicker.min.js"></script>  
+</head>
+
+<body>
+
+<form  action="/U/html/upload/?_a=upload&f=upload_product"  method="post" enctype="multipart/form-data">
+<table class="table table-bordered table-hover definewidth m10">
+	
+	<tr>
+		  <td width="10%" class="tableleft">商品名称</td>
+		<td>
+		<input type="text"  name="product_name" value="">
+   	</td>
+	</tr>
+	
+	<tr>
+		  <td width="10%" class="tableleft">商品分类</td>
+		<td>
+		          <select id="c1" name="c1"></select>
+						  <select id="c2" name="c2"></select>	  
+						  <input type="hidden" id="category" name="category" value="<?php echo $this->_tpl_vars['category']; ?>
+"><br />
+   	</td>
+	</tr>
+	
+	
+	<tr>
+		<td width="10%" class="tableleft">商品图片</td>
+		<td>
+		  <div style="position:relative;width:360px;">
+        	  <input type='hidden ' name='textfield' id='textfield' style="height:22px; border:1px solid #cdcdcd;"/> 
+        	  <input type='button' style="background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;" value='浏览...' />
+        	  <input type="file"  id="product_img" style=" position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:260px" name="product_img" size="28" onchange="document.getElementById('textfield').value=this.value" >
+        	  <input type="button" style="background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;" value="上传" onclick="return ajaxFileUpload();" />
+        		<span  id="img">   </span>   
+          </div>	
+   	</td>
+	</tr>
+	
+	
+   <tr id="pro_list1">
+        <td width="10%" class="tableleft"> 添加时间 </td>
+        
+        <td>
+  <div id="datetimepicker1" class="input-append date form_datetime"> <input data-format="yyyy/MM/dd" type="text" name="create_time"> </input> <span class="add-on"><i class="icon-calendar"></i></span></div>
+       </td>
+ 
+    </tr>
+    
+     <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </td>
+    </tr>
+ 
+
+
+</table>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    $(function() {
+    	
+    set_category('', 1, ''); 
+    
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR',
+       autoclose: true,
+       todayBtn: true,
+       pickerPosition: "bottom-left"
+    });
+  });
+  
+  
+ 
+</script>
+   
