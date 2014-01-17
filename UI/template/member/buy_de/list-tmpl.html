@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="directive,directive" />
+<title>会员后台——buy</title>
+<meta name="keywords" content="Der Welthandel, Hersteller, Lieferanten, Exporteure, Importeure, Produktkatalog, Gesch?ftsinformationen, Informationen über die Exposition">
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap.min.css" />
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/bootstrap-responsive.css"/>
+ <link rel="stylesheet" type="text/css" href="/U/UI/css/style.css" />
+ <script type="text/javascript" src="/U/UI/js/jquery.js"></script>  
+ <script type="text/javascript" src="/U/UI/js/bootstrap.js"></script> 
+</head>
+
+<body>
+	<table class="table table-bordered table-hover definewidth m10">
+	<p></P>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/U/html/member">返回上级</a>
+		 <tr>
+        <th>商品编号</th>
+        <th>商品分类</th>
+        <th>商品名称</th>
+        <th>操作</th>
+    </tr>
+	 <{section name=sec loop=$list_product}>	 
+	 
+	<tr>  	
+	<td class="tableleft">
+	 	<{$list_product[sec].id}>
+	</td>
+  
+  
+ 
+	<td class="tableleft">
+	 	<{$list_product[sec].cate_name}>
+	</td>
+	
+	
+	<td class="tableleft">
+	 	<{$list_product[sec].product_name}>
+	</td>
+	
+	<td>
+		<a href="?_d=<{$_d}>&_a=<{$_a}>&f=edit&id=<{$list_product[sec].id}>">编辑</a>
+	  <a href="?_d=<{$_d}>&_a=<{$_a}>&f=delete&id=<{$list_product[sec].id}>">删除</a>	
+	</td>
+</tr>
+	
+		 
+	
+	<{/section}>
+
+	<br/>
+</table>	
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?_d=<{$_d}>&_a=<{$_a}>&f=detail">添加产品</a>
+ 
+  </br>
+	 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{include file =../Share/inc-page-jump.html}>
+
+
+</body>
+</html> 

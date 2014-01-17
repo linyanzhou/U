@@ -144,8 +144,9 @@
             $opts = array(
                 'id' => $id
             );
+             
             $rv = $db_type->get_profile($opts, $this->cache);
-
+  
             if ($rv['id'] <= 0)
                 return;
 
@@ -153,11 +154,10 @@
             $opts = array(
                 'id' => $id,
                 'unpost' => TRUE,
-                'fields' => array('status', 'poster_id', 'post_ip'),
+                'fields' => array('status','poster_id'),
                 'inputs' => array(
                     'status'    => $status,
-                    'poster_id' => $user_id,
-                    'post_ip'   => $post_ip
+                    'poster_id' => $user_id,                    
                 )
             );
             $db_type->change($opts);

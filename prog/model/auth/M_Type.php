@@ -125,8 +125,8 @@
                 if ( is_numeric($id) && ($id) > 0 ) {
                     if (is_numeric($id) && ($id) > 0)
                         $sql.= " and id = $id ";
-                    //echo $sql;
-                    //exit;
+                 //   echo $sql;
+                //    exit;
 
                     $conn = self::$DBM->get_connect();
                     return self::$DBM->execute($conn, $sql);

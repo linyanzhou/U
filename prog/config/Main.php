@@ -111,7 +111,7 @@
             'time_out'   => 30,
             'log_file'   => '/var/www/html/toocle/intl/logs/log4php/log4php.log'
         ),
-        
+        /*
         'session' => array(
             'module' => '',//db
             'domain' => '.toocle.com',
@@ -128,6 +128,7 @@
                 'table'  => 'toocle_intl_tmp.session_db'
             )
         )
+        */
     );
 
 ?>

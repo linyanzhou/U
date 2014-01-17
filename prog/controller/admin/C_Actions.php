@@ -112,7 +112,7 @@
             $db_action_to_group = $this->setup->get_model_handler('auth/action_to_group');
 
             $inputs['poster_id'] = $user_id;
-            $inputs['post_ip']   = $post_ip;
+           
 
             $id   = isset($inputs['id']) ? $inputs['id'] : null;
             $name = isset($inputs['name']) ? $inputs['name'] : null;
@@ -184,11 +184,11 @@
             $opts = array(
                 'id' => $id,
                 'unpost' => TRUE,
-                'fields' => array('status', 'poster_id', 'post_ip'),
+                'fields' => array('status', 'poster_id'),
                 'inputs' => array(
                     'status'    => $status,
                     'poster_id' => $user_id,
-                    'post_ip'   => $post_ip
+                   
                 )
             );
             $db_action->change($opts);

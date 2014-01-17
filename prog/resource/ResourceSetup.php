@@ -10,7 +10,8 @@
             $this->_action    = $opts['action'];
             $this->_domain    = $opts['domain'];
             $this->_charset   = $opts['charset'];
-            $this->_authorize = $opts['authorize'];       
+            $this->_authorize = $opts['authorize'];  
+            $this->_welcome   = $opts['welcome'];     
             $this->_deploy_root  = $opts['deploy_root'];
             $this->_cache_folder = $opts['cache_folder'];
             $this->_conf_folder  = $opts['conf_folder'];
@@ -52,7 +53,8 @@
         }
 
         public function get_welcome() {
-            return ( strtolower($this->_welcome) == 'false' ? FALSE : TRUE );
+       
+            return ( strtolower($this->_welcome) == false ? FALSE : TRUE );
         }
 
         public function get_deploy_root() {

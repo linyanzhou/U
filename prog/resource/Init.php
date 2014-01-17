@@ -16,9 +16,9 @@
         
 
         $authorize = $setup->get_authorize();
-        
+      
         $welcome   = $setup->get_welcome();
-        
+           
         $control   = $setup->get_controller_handler();
 
         $control->set_static_handler();
@@ -26,6 +26,7 @@
         if ( $authorize == TRUE ) {
             $authorize = $setup->get_controller_handler('authorize');
             $authorize->authorize();
+            
         }
         $wel = null;
         if ( $welcome == TRUE ) {
@@ -34,7 +35,7 @@
         }
 
         $control->set_welcome_info($wel);
-        
+      
         
 
         $control->callback();

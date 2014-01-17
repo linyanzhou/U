@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+    <title>生意助手</title>
+		<style type="text/css">
+      body,ul,li{font-size:12px;color:#333333;font-family:Arial, Helvetica, sans-serif;padding:0 0;margin:0 0;}
+      UL,LI {DISPLAY: list-item;LIST-STYLE-TYPE: none;}
+      .wid{clear:both;width:630px;margin:0 auto;text-align:left;}
+      .letter{border-left:1px solid #a4c3d4;border-right:1px solid #a4c3d4;font-size:14px;}
+      .letter .w1{clear:both;font-weight:bold;padding:33px 20px 10px;}
+      .letter .w2{clear:both;padding:0px 20px;line-height:24px;}
+      .letter .w3{clear:both;padding:0px 20px 0px 450px;line-height:24px;}
+      .letter .w4{clear:both;padding:10px 0px;text-align:center;}
+      .card{clear:both;border:1px solid #d5d5d5;zoom:1;background: url(http://ui.hub.toocle.com/images/inquire/2.gif) no-repeat right bottom;padding-bottom:15px;}
+      .card .c1{clear:both;border-top:7px solid #e4eef4;padding:18px 15px 10px;color:#0066cc;font-size:14px;}		
+      .card li{float:left;line-hegiht:23px;width:280px;padding-left:15px;}
+      .cle{clear:both;}
+      .foot{line-hegiht:20px;text-align:center;padding:10px 0px;}
+    </style>
+  </head>
+
+  <body bgcolor="#ffffff">
+    <center>
+      <div class="wid">
+        <img src="http://ui.hub.toocle.com/images/inquire/logo.gif" alt="生意宝-生意询价">
+      </div>
+      <div class="wid">
+        <div class="letter">
+          <div class="w2"><{$content}></div>
+          <div class="w3">
+            <{if $company.company}>
+              <{$company.contact}><br>
+              <{$company.company}><br>
+            <{/if}>
+            <{$pdate}>
+          </div>
+        </div>
+        <{if $company.company}>
+          <div class="card">
+            <div class="c1">
+              <b><{$company.company}></b> <{$company.contact}>
+            </div>
+            <ul>
+              <li style="width:580px;"><{$company.address}>(<{$company.zip}>)</li>
+              <li>电话：<{$company.tel}></li>
+              <li>传真：<{$company.fax}></li>
+              <li>手机：<{$company.mobile}></li>
+              <li>邮件：<{$company.email}></li>
+              <div class="cle"></div>
+            </ul>
+          </div>
+        <{/if}>
+        <div class="card"><div class="c1"></div></div>
+      </div>
+      <div class="wid foot">© 生意宝(002095) 版权所有  浙ICP证</div>
+    </center>
+  </body>
+</html>

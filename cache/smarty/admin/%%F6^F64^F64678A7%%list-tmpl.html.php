@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-01-15 07:02:05
+<?php /* Smarty version 2.6.26, created on 2014-01-16 01:18:03
          compiled from types/list-tmpl.html */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -138,7 +138,8 @@ unset($_smarty_tpl_vars);
 <script>
   $(function() {
     //status
-    var url = "?_a=<?php echo $this->_tpl_vars['_a']; ?>
+    var url = "?_d=<?php echo $this->_tpl_vars['_d']; ?>
+&_a=<?php echo $this->_tpl_vars['_a']; ?>
 &_w=false&f=able";
     var ableStatus = new Able();
     ableStatus.able('btn_able_status', 'wrap_able_status', url);

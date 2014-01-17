@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>My Toocle&nbsp;&nbsp;<{$_login_user_id}>&nbsp;&nbsp;result</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" type="text/css" media="all" href="<{$_url_ui}>/css/de/all2.css" />
+  <link href="<{$_url_ui}>/css/de/member.css" type="text/css" rel="stylesheet">
+  <script language="javascript" src='<{$_url_ui}>/js/member/default.js'></script>
+</head>
+
+<body>
+<div class="container">
+<{$Header_new}>
+<div class="main">
+<{$Main_menu_text_new}>
+   
+    <div class="content">
+		<div class="member-ok">
+			<div class="img-ok"><img src="http://ui.hub.toocle.com/images/member/register/member-ok.jpg" /></div>
+			<div class="success">Your infomation
+			 <{if $E_create_successful}>
+                   has been added successfully!
+                  <{/if}>
+                  <{if $E_create_failed}>
+                   fail to add
+                  <{/if}>
+                  <{if $E_change_successful}>
+                      has been saved successfully!
+                  <{/if}>
+                  <{if $E_change_failed}>
+                    fail to save
+                  <{/if}>
+                  
+                  <br />
+                  <span><{if $action_view}>
+                   <a href="<{$action_view}>" class="green"> Click here to view  </a>
+                  <{/if}>
+                  <{if $action_return}>
+                    <a href="<{$action_return}>" class="green"> Click here to back </a>
+                  <{/if}>
+                  </span></div>
+			
+		</div>
+	</div><!--content-->
+  </div><!--wrapper-->
+
+  <div class="footer">
+  	<div id="footer">
+    <{$Footer_new}>
+  </div>
+  </div>
+</body>
+</html>

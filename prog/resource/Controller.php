@@ -44,7 +44,8 @@
             isset(self::$l_string)or self::$l_string = $this->setup->get_library_handler('string');
            
             isset(self::$l_upload)or self::$l_upload = $this->setup->get_library_handler('upload');
-
+           
+            isset(self::$l_validate)or self::$l_validate = $this->setup->get_library_handler('validate');
 //            isset(self::$l_encrypt)
 //                or self::$l_encrypt  = $this->setup->get_library_handler('encrypt');
 //
@@ -97,14 +98,14 @@
         public function prompt_login( $res = array() )
         {
             $action = "?_d=$this->domain&_a=login";
-
+ 
             self::$l_uri->redirect($action, $res);
         }
 
         public function prompt_main( $res = array() )
         {
             $action = "?_d=$this->domain&_a=main";
-
+ 
             self::$l_uri->redirect($action, $res);
         }
 
@@ -145,99 +146,49 @@
             return md5($passwd);
         }
 
-        public function get_upload_uniqid($res = array())
-        {
-            //return uniqid(); 
-            $str = "";            
-            foreach ($res as $key => $value) {
-                 $str .= "&".$key."=".$value; 
-            }
-            $url = "$this->url_upload/?_a=upload&f=get_uniqid&namespace=".$this->namespace . $str;
-            return file_get_contents($url);
-        }
-
-        public function get_upload_fields($uniqid, $pics, $inputs)
-        {
-            $data = $this->_get_upload_session($uniqid);
-            $data = json_decode($data, TRUE);
-
-            $fields = array();
-            foreach ($pics as $i) {
-                $delpic  = isset($inputs["delpic$i"]) ? $inputs["delpic$i"] : null;
-                $sesskey = $uniqid . '_' . $i;
-                $pic_name = $data[$sesskey];
-
-                if (! $delpic) {
-                    $fields[] = "pic_name$i";
-                    $inputs["pic_name$i"] = $pic_name;
-                    if ($pic_name)
-                        $this->_move_uploaded_file($pic_name);
-                }
-            }
-
-            return array($fields, $inputs);
-        }
-
-        private function _get_upload_session($uniqid)
-        {
-            $url = "$this->url_upload/?_a=upload&f=get_session&uniqid=$uniqid";
-            return file_get_contents($url);
-        }
-
-        private function _move_uploaded_file($src)
-        {
-            $url = "$this->url_upload/?_a=upload&f=move_uploaded_file&src=" . urlencode($src);
-            return file_get_contents($url);
-        }
+       
 
         //cookie
-        public function set_cookie_login_user_id( $user_id, $nonce = 'intl' )
+        public function set_cookie_login_user_id( $user_id, $nonce )
         {
             $expire = NULL;
             if($this->cookie_expire) 
                $expire = time() + $this->cookie_expire;
-               
-            setcookie($nonce . '_LOGIN_USER_ID', $user_id, $expire, $this->cookie_path, $this->cookie_domain);
+             
+            setcookie($nonce . '_LOGIN_USER_ID', $user_id);
         }
 
-        public function get_cookie_login_user_id( $nonce = 'intl' )
+        public function get_cookie_login_user_id( $nonce  )
         {            
             return isset($_COOKIE[$nonce . '_LOGIN_USER_ID']) ? $_COOKIE[$nonce . '_LOGIN_USER_ID'] : null;
         }
         
-        //lang cookie 
-        public function set_cookie_lang( $lang, $nonce = 'intl' )
-        {
-            $expire = NULL;
-            if($this->cookie_expire) 
-               $expire = time() + $this->cookie_expire;
-               
-            setcookie($nonce . '_LANG', $lang, $expire, $this->cookie_path, $this->cookie_domain);
-        }
+      
 
-        public function get_cookie_lang( $nonce = 'intl' )
-        {            
-            return isset($_COOKIE[$nonce . '_LANG']) ? $_COOKIE[$nonce . '_LANG'] : null;
-        }
+       
         
         //session
-        public function set_login_user_id( $user_id, $nonce = 'intl' )
+        public function set_login_user_id( $user_id, $nonce)
         {
             if (! isset($_SESSION))
                 session_start();
 
             $_SESSION[$nonce . '_LOGIN_USER_ID'] = $user_id;
+            //echo $_SESSION[$nonce . '_LOGIN_USER_ID'];
+            //exit;
         }
 
-        public function set_login_password( $password, $nonce = 'intl' )
+        public function set_login_password( $password, $nonce )
         {
             if (! isset($_SESSION))
                 session_start();
 
             $_SESSION[$nonce . '_LOGIN_PASSWORD'] = $password;
+             //echo $_SESSION[$nonce . '_LOGIN_PASSWORD'];
+            // exit;
         }
 
-        public function get_login_user_id( $nonce = 'intl' )
+        public function get_login_user_id( $nonce  )
         {
             if (! isset($_SESSION))
                 session_start();
@@ -245,7 +196,7 @@
             return isset($_SESSION[$nonce . '_LOGIN_USER_ID']) ? $_SESSION[$nonce . '_LOGIN_USER_ID'] : null;
         }
 
-        public function get_login_password( $nonce = 'intl' )
+        public function get_login_password( $nonce )
         {
             if (! isset($_SESSION))
                 session_start();
@@ -272,31 +223,7 @@
             return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
         }
         
-        //session
-
-//        //cookie
-//        public function set_login_user_id( $user_id, $nonce = '' )
-//        {
-//            $expire = time() + $this->cookie_expire;
-//            setcookie($nonce . '_LOGIN_USER_ID', $user_id, $expire, $this->cookie_path, $this->cookie_domain);
-//        }
-//
-//        public function set_login_password( $password, $nonce = '' )
-//        {
-//            $expire = time() + $this->cookie_expire;
-//            setcookie($nonce . '_LOGIN_PASSWORD', $password, $expire, $this->cookie_path, $this->cookie_domain);
-//        }
-//
-//        public function get_login_user_id( $nonce = '' )
-//        {
-//            return $_COOKIE[$nonce . '_LOGIN_USER_ID'];
-//        }
-//
-//        public function get_login_password( $nonce = '' )
-//        {
-//            return $_COOKIE[$nonce . '_LOGIN_PASSWORD'];
-//        }
-//        //cookie
+ 
 
     }
 

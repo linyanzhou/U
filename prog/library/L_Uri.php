@@ -40,8 +40,9 @@
 
             if ( count($querys) > 0 )
                 $action .= '?' . join('&', $querys);
-    
+   
             Header("Location:$action");
+            
             exit;
         }
 

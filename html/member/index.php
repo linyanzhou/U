@@ -1,12 +1,14 @@
 <?php
+
     function main()
     {
-        $debug     = False;
-        $authorize = False;   //不进行权限判断
-        $domain    = '/';
-        $function  = isset($_REQUEST['f']) ? strip_tags($_REQUEST['f']) : null;
-        $action    = isset($_REQUEST['_a']) ? strip_tags($_REQUEST['_a']) : null;
-        $welcome   =  False;
+        $debug     = FALSE;
+        $authorize = TRUE;
+        $domain    = 'member';
+        $function  = isset($_REQUEST['f']) ? $_REQUEST['f'] : null;
+        $action    = isset($_REQUEST['_a']) ? $_REQUEST['_a'] : null;
+        $welcome   = TRUE;
+
         $deploy_root  = 'E:/Php/wamp/www/U';
 
         $class = "prog/resource/Init.php";
@@ -21,15 +23,14 @@
             'authorize' => $authorize,
             'function'  => $function,
             'action'    => $action,
-            'domain'    => $domain,  
-            'welcome'   => $welcome,       
+            'domain'    => $domain,
+            'welcome'   => $welcome,
             'deploy_root' => $deploy_root
         );
-        
 
         initialize($opts);
     }
 
-
     main();
+
 ?>

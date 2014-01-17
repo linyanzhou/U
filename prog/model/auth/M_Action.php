@@ -311,9 +311,8 @@
             if ($limit > 0)
                 $cond .= " limit $limit ";
 
-            $sql = " SELECT a.id,a.action_code,a.action_func,a.access_type,a.namespace,a.name,a.type_id,a.in_menu,a.blank,a.link,a.status,a.rank FROM $table WHERE $cond ";
-           // echo $sql;
-           // exit;
+            $sql = " SELECT a.id,a.action_code,a.action_func,a.access_type,a.namespace,a.name,a.type_id,a.status FROM $table WHERE $cond ";
+            
 
             $conn = self::$DBM->get_connect($dbh);
 
