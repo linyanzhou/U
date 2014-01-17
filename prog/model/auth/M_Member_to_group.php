@@ -87,8 +87,7 @@
                 
             $sql = " SELECT g.*, m2g.id as m2g_id,m2g.group_id as m2g_gid  FROM $table WHERE $cond ";
             
-            //echo $sql;
-            //exit;
+             
 
             $conn = self::$DBM->get_connect($dbh);
 

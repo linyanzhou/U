@@ -86,16 +86,9 @@
                 $list_actions = json_decode($cache_obj, true);  
             }
             else {            	              	  
-            	 
-                //list_types
-                $opts = array(
-                    'fields'  => 'id,name,open',
-                    'status'  => 1,
-                    'orderby' => 'rank'
-                );
-                $list_types = $db_type->get_list($opts, 0);   
+  
 
-                //open_actions
+                    //open_actions
                 $opts = array(
                     'fields'  => 'id,action_code,action_func,access_type,namespace,name,type_id,status',
                     'status'  => 1,
@@ -136,13 +129,36 @@
 
                 $list_actions = array_merge($open_actions, $member_actions, $grant_actions);
                 
+                  // list_type  status״̬
+                foreach($list_actions as &$l){ 
+                	$type_id=$l['type_id'];
+                	
+                	$opts = array(
+                  'dbh' =>"default",
+                  'id' => $type_id
+                  );
+                $res = $db_type->get_profile($opts, 0);   
+                $status=$res['status'];
+                if($status==0){
+                $l=NULL;
+                }
+                }
+                $list_actions_=array();
+                foreach($list_actions as $lt){
+                	if(sizeof($lt)>0)
+                	$list_actions_[]=$lt;
+                	 
+                	 
+                }
+                 
+                 
             
-                     $cache =60;
-                    $cache_obj = json_encode($list_actions);
+                    $cache =0;
+                    $cache_obj = json_encode($list_actions_);
                     
                     $memcached->set_cache($cache_id, $cache_obj, $cache);
            }
-            return $list_actions;
+            return $list_actions_;
         
         
          

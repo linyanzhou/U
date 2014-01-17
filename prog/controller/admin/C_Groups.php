@@ -72,20 +72,20 @@
                 $opts = array(
                     'id' => $id
                 );
-                $res = $db_group->get_profile($opts, $this->cache);
-
+                $res = $db_group->get_profile($opts, $this->cache);//  detail页面  <{$name}>  <{$intro}>
+ 
                 if ( $act == 'copy' )
                     $res['id'] = null;
             }
 
-            //list_actions
+            //list_actions         GRANT类型action
             $opts = array();
             $list_types = $db_type->get_list($opts, $this->cache);
 
             foreach ($list_types as &$lt) {
                 $opts = array(
                     'type_id' => $lt['id'],
-                    'access_type' => 'GRANT'
+                    'access_type' => 'GRANT'   //获取grant类型的action
                 );
                 $list_actions = $db_action->get_list($opts, $this->cache);
                 $lt['list_actions'] = $list_actions;
@@ -93,12 +93,13 @@
             $res['list_types'] = $list_types;
 
             //get_actions_of_group
-            $opts = array(
+                                                    //js那边set_check
+            $opts = array( 
                 'group_id' => $id
             );
             $list_actions = $db_action_to_group->get_list($opts);
             $res['list_actions'] = $list_actions;
-
+       
             $res["E_$exp"] = 1;
             $res = self::$l_output->escape($res);
 
@@ -109,6 +110,7 @@
         public function do_change()
         {
             $inputs   = self::$l_input->post();
+            
             $user_id  = $this->get_login_user_id( $this->domain );
             $post_ip  = $this->setup->get_request_ip();
             $db_group = $this->setup->get_model_handler('auth/group');

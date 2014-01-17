@@ -80,7 +80,7 @@
             );
             $list_groups = $db_member_to_group->get_list($opts);
             $res['list_groups'] = $list_groups;
-
+ 
             $res["E_$exp"] = 1;
             $res = self::$l_output->escape($res);
 
