@@ -1,23 +1,23 @@
 U
 ==================================================
 
-文件目录结构
+鏂囦欢鐩綍缁撴瀯
             |cache
                  |smarty
             |html
             |logs
             |prog
-                 |config     项目公共配置文件
+                 |config     椤圭洰鍏叡閰嶇疆鏂囦欢
                  |controller
-                 |crontab    linux下自动执行的文件
+                 |crontab    linux涓嬭嚜鍔ㄦ墽琛岀殑鏂囦欢
                  |model
-                 |resource   核心文件（初始化时执行文件）
+                 |resource   鏍稿績鏂囦欢锛堝垵濮嬪寲鏃舵墽琛屾枃浠讹級
                  
                  
             |UI
                  |css
                  |images
                  |js
-                 |templates  smarty模版
+                 |templates  smarty妯＄増
             |Upload
-                 |images   上传图片保存目录
+                 |images   涓婁紶鍥剧墖淇濆瓨鐩綍
