@@ -126,7 +126,19 @@
                 'uname'  => 'toocle_intl',
                 'pword'  => '12345',
                 'table'  => 'toocle_intl_tmp.session_db'
+            ),
+            
+            'module' => 'mem',//db mem
+            'domain' => 'my.sinopay.com',
+            'path'   => '/',
+            'expire' => 18000,
+ 
+            'mem' => array(
+                'port' => '11211',
+                'servers' => 'mem.sinopay.com',
+                'expire'  => 18000
             )
+
         )
         */
     );
